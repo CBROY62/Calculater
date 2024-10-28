@@ -1,0 +1,107 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Calculator App</title>
+  <!-- Materialize CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+ <link rel="stylesheet" href="calculator.css">
+</head>
+<body>
+  <main>
+    <div id="calculator">
+      <div id="display">0</div>
+      <div class="row">
+        <div class="col s3">
+          <a class="btn-flat waves-effect waves-light" onclick="appendToDisplay('7')">7</a>
+        </div>
+        <div class="col s3">
+          <a class="btn-flat waves-effect waves-light" onclick="appendToDisplay('8')">8</a>
+        </div>
+        <div class="col s3">
+          <a class="btn-flat waves-effect waves-light" onclick="appendToDisplay('9')">9</a>
+        </div>
+        <div class="col s3">
+          <a class="btn-flat waves-effect waves-light" onclick="appendToDisplay('/')"> / </a>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col s3">
+          <a class="btn-flat waves-effect waves-light" onclick="appendToDisplay('4')">4</a>
+        </div>
+        <div class="col s3">
+          <a class="btn-flat waves-effect waves-light" onclick="appendToDisplay('5')">5</a>
+        </div>
+        <div class="col s3">
+          <a class="btn-flat waves-effect waves-light" onclick="appendToDisplay('6')">6</a>
+        </div>
+        <div class="col s3">
+          <a class="btn-flat waves-effect waves-light" onclick="appendToDisplay('*')"> * </a>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col s3">
+          <a class="btn-flat waves-effect waves-light" onclick="appendToDisplay('1')">1</a>
+        </div>
+        <div class="col s3">
+          <a class="btn-flat waves-effect waves-light" onclick="appendToDisplay('2')">2</a>
+        </div>
+        <div class="col s3">
+          <a class="btn-flat waves-effect waves-light" onclick="appendToDisplay('3')">3</a>
+        </div>
+        <div class="col s3">
+          <a class="btn-flat waves-effect waves-light" onclick="appendToDisplay('-')"> - </a>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col s3">
+          <a class="btn-flat waves-effect waves-light" onclick="clearDisplay()">C</a>
+        </div>
+        <div class="col s3">
+          <a class="btn-flat waves-effect waves-light" onclick="appendToDisplay('0')">0</a>
+        </div>
+        <div class="col s3">
+          <a class="btn-flat waves-effect waves-light" onclick="appendToDisplay('.')"> . </a>
+        </div>
+        <div class="col s3">
+          <a class="btn-flat waves-effect waves-light" onclick="calculateResult()"> = </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Materialize JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script>
+    let displayValue = '0';
+
+    function appendToDisplay(char) {
+      if (displayValue === '0') {
+        displayValue = char;
+      } else {
+        displayValue += char;
+      }
+      updateDisplay();
+    }
+
+    function clearDisplay() {
+      displayValue = '0';
+      updateDisplay();
+    }
+
+    function calculateResult() {
+      try {
+        displayValue = eval(displayValue).toString();
+        updateDisplay();
+      } catch (error) {
+        displayValue = 'Error';
+        updateDisplay();
+      }
+    }
+
+    function updateDisplay() {
+      document.getElementById('display').textContent = displayValue;
+    }
+  </script>
+</body>
+</html>
